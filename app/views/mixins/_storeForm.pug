@@ -6,6 +6,22 @@ mixin storeForm(store = {})
     label(for="description") Description
     textarea#description(name="description")= store.description
 
+    //- Address, lat, lng
+    label(for="address") Address
+    input#address(type="text" name="location[address]" value=(store.location && store.location.address))
+
+    label(for="lng") Address Lng
+    input#lng(type="text" name="location[coordinates][0]" value=(store.location && store.location.coordinates[0]))
+
+    label(for="lat") Address Lat
+    input#lat(type="text" name="location[coordinates][1]" value=(store.location && store.location.coordinates[1]))
+
+    //- label(for="latitude") Latitude
+    //- input#latitude(type="text" name="latitude" name="location[latitude]")
+
+    //- label(for="address") Longitude
+    //- input#address(type="text" name="address" name="location[address]")
+
     - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian', 'Licensed']
     - const tags = store.tags || []
     ul.tags
