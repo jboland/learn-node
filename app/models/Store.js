@@ -42,6 +42,11 @@ const storeSchema = new mongoose.Schema({
   }
 });
 
+storeSchema.index({
+  name: 'text',
+  description: 'text'
+});
+
 storeSchema.pre('save', async function(next) {
   if (!this.isModified('name')) return next();
   
@@ -52,7 +57,6 @@ storeSchema.pre('save', async function(next) {
     this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
   }
   next();
-  // TODO handle unique slugs
 });
 
 storeSchema.statics.getTagsList = function() {
